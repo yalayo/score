@@ -1,0 +1,7 @@
+{:source-paths ["../../bases/server"
+                "node_modules/sitefox/src"]
+ :dependencies [[applied-science/js-interop "0.2.7"]]
+ :builds {:server {:target :node-script
+                   :output-to "devserver.js"
+                   :main app.server.core/main!
+                   :release {:output-to "build/server.js"}}}}

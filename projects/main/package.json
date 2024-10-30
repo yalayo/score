@@ -1,0 +1,14 @@
+{
+    "dependencies": {
+      "express": "4.17.1",
+      "express-session": "1.17.2",
+      "html-to-text": "8.1.0",
+      "json-stringify-safe": "5.0.1",
+      "sitefox": "github:chr15m/sitefox"
+    },
+    "devDependencies": {
+      "shadow-cljs": "^2.28.3"
+    },
+      "scripts": {
+      }
+  }
