@@ -1,0 +1,24 @@
+name: CICD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build with shadow-cljs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create the nodejs app
+        run: |
+          cd ./projects/main/
+          npm install
+  deploy:
+    name: Deploy to Cloudflare
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+            apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
