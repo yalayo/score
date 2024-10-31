@@ -35,6 +35,7 @@ jobs:
         run: |
           cd ./projects/main/
           npm install
+          npx shadow-cljs release server
   deploy:
     name: Deploy to Cloudflare
     runs-on: ubuntu-latest
