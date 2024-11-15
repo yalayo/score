@@ -130,6 +130,7 @@ dist
 .pnp.*
 
 # Clojure related
+.calva/
 .clj-kondo/
 .shadow-cljs/
 .portal/
