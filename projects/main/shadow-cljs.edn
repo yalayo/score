@@ -1,6 +1,8 @@
 {:source-paths ["../../bases/server/src"
                 "node_modules/sitefox/src"]
- :dependencies [[applied-science/js-interop "0.2.7"]]
+ :dependencies [[applied-science/js-interop "0.2.7"]
+                [funcool/promesa "6.0.2"]
+                [reagent "1.2.0"]]
  :builds {:server {:target :node-script
                    :output-to "devserver.js"
                    :main app.server.core/main!
