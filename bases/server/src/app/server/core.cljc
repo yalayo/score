@@ -1,20 +1,18 @@
 (ns app.server.core
-  (:require
-   [promesa.core :as p]
-   [sitefox.web :as web]))
+  (:require ["express" :as express]))
 
-(defonce server (atom nil))
+(def app (express))
+(def port 3000)
 
-(defn setup-routes [app]
-  (web/reset-routes app)
-  (web/static-folder app "/" "public"))
+(. app get "/"
+   (fn [_ res]
+     (. res send "Hello world")))
 
 (defn main! []
-  (p/let [[app host port] (web/start)]
-    (reset! server app)
-    (setup-routes app)
-    (println "Serving on" (str "http://" host ":" port))))
+  (. app listen port 
+     (fn []
+       (println "Listening on port: " port))))
 
-(defn ^:dev/after-load reload []
-  (js/console.log "Reloading.")
-  (setup-routes @server))
+(comment
+  (main!)
+  )
