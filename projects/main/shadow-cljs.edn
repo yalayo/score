@@ -1,4 +1,4 @@
-{:source-paths ["../../bases/server"
+{:source-paths ["../../bases/server/src"
                 "node_modules/sitefox/src"]
  :dependencies [[applied-science/js-interop "0.2.7"]]
  :builds {:server {:target :node-script
