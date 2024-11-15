@@ -26,6 +26,8 @@ jobs:
       - name: Deploy with Terraform
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
         run: |
             cd ./projects/main/terraform
             terraform init
