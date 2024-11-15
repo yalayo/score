@@ -18,6 +18,8 @@ jobs:
           cd ./projects/main/
           npm install
           npx shadow-cljs release server
+          cp build/server.js terraform/
+          ls -l terraform/
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
@@ -26,6 +28,7 @@ jobs:
         run: |
             ls -l
             cd ./projects/main/terraform
+            ls -l
             export TF_VAR_cloudflare_api_token=${{ secrets.CLOUDFLARE_API_TOKEN }}
             terraform init
             terraform apply -auto-approve
