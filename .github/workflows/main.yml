@@ -5,30 +5,9 @@ on:
     branches: [ main ]
 
 jobs:
-  terraform:
-    name: 'Create cloudflare resources'
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        shell: bash
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-    - name: Terraform Apply
-      run: |
-          cd ./projects/main/terraform
-          terraform init
-          terraform apply -auto-approve -input=false
   build:
     name: Build with shadow-cljs
     runs-on: ubuntu-latest
-    needs: [terraform]
     steps:
       - uses: actions/checkout@v4
       - name: Create the nodejs app
@@ -36,7 +15,6 @@ jobs:
           cd ./projects/main/
           npm install
           npx shadow-cljs release server
-          ls -l
   deploy:
     name: Deploy to Cloudflare
     runs-on: ubuntu-latest
@@ -51,11 +29,8 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
       - name: Terraform Apply
         run: |
+            ls -l
             cd ./projects/main/terraform
             export TF_VAR_cloudflare_api_token=${{ secrets.CLOUDFLARE_API_TOKEN }}
             terraform init
             terraform apply -auto-approve
-      #- name: Deploy
-      #  uses: cloudflare/wrangler-action@v3
-      #  with:
-      #      apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
