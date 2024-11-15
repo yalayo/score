@@ -24,7 +24,7 @@ provider "cloudflare" {
   api_token = var.cloudflare_api_token
 }
 
-resource "cloudflare_worker_script" "score_backend" {
+resource "cloudflare_workers_script" "score_backend" {
   account_id = "f037e56e89293a057740de681ac9abbe"
   name       = "score-backend"
   content    = file("server.js")
