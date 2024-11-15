@@ -16,6 +16,10 @@ terraform {
   }
 }
 
+variable "cloudflare_api_token" {
+  default = ""
+}
+
 provider "cloudflare" {
   api_token = var.cloudflare_api_token
 }
