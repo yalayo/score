@@ -25,7 +25,7 @@ provider "cloudflare" {
 }
 
 resource "cloudflare_workers_script" "score_backend" {
-  account_id = "f037e56e89293a057740de681ac9abbe"
+  account_id = "4180cebb0f75e57d434f27a622da70f0"
   name       = "score-backend"
   content    = file("server.js")
 }
